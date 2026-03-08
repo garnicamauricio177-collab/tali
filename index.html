@@ -2,59 +2,135 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para Tali ❤️</title>
+<title>FELIZ DIA DE LA MUJER MI AMOR ❤️</title>
 
 <style>
 body{
-    background: linear-gradient(#ff9a9e,#fad0c4);
-    font-family: Arial;
-    text-align: center;
-    color: white;
+    margin:0;
+    background:black;
+    font-family:Arial;
+    color:white;
+    overflow:hidden;
 }
 
-h1{
-    margin-top:30px;
+.contenedor{
+    position:relative;
+    width:100vw;
+    height:100vh;
 }
 
 .foto{
-    width:300px;
-    border-radius:20px;
-    box-shadow:0 0 15px rgba(0,0,0,0.4);
+    width:100%;
+    height:100%;
+    object-fit:contain;
 }
 
-.texto{
-    font-size:20px;
-    margin-bottom:40px;
+.descripcion{
+    position:absolute;
+    bottom:40px;
+    width:100%;
+    text-align:center;
+    font-size:28px;
+    background:rgba(0,0,0,0.4);
+    padding:15px;
 }
 
-button{
-    padding:10px 20px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
+.flecha{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:50px;
+    cursor:pointer;
+    user-select:none;
+    padding:20px;
+}
+
+.izquierda{
+    left:10px;
+}
+
+.derecha{
+    right:10px;
+}
+
+.flecha:hover{
+    color:#ff4b7d;
+}
+
+.boton-musica{
+    position:absolute;
+    top:20px;
+    right:20px;
     background:#ff4b7d;
+    border:none;
+    padding:10px 15px;
     color:white;
+    font-size:16px;
+    border-radius:10px;
+    cursor:pointer;
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>❤️ Para Tali ❤️</h1>
+<div class="contenedor">
 
-<img class="foto" src="foto1.jpg">
-<p class="texto">Sos la luz que ilumina todos mis días</p>
+<img id="imagen" class="foto">
 
-<img class="foto" src="foto2.jpg">
-<p class="texto">Con vos todo es más lindo</p>
+<div class="descripcion" id="texto"></div>
 
-<img class="foto" src="foto3.jpg">
-<p class="texto">Gracias por estar siempre conmigo</p>
+<div class="flecha izquierda" onclick="anterior()">❮</div>
+<div class="flecha derecha" onclick="siguiente()">❯</div>
 
-<button onclick="document.getElementById('musica').play()">🎵 Reproducir música</button>
+<button class="boton-musica" onclick="toggleMusica()">🎵 Música</button>
 
 <audio id="musica" src="musica.mp3"></audio>
+
+</div>
+
+<script>
+
+let fotos = [
+{img:"foto1.jpg", texto:"Sos la luz que ilumina todos mis días,sin vos no puedo estar a meses de cumplir un año te digo que sos la mujer mas hermosa de esta vida"},
+{img:"foto2.jpg", texto:"Con vos todo es más lindo ,veni a cebarme mates toda mi vida, que cada mate es mas dulce no por el azucar si no porque tu compania hace
+                          mas dulce todo"},
+{img:"foto3.jpg", texto:"Cada momento con vos es especial y unico, cada momento es la primera ves con vos porque nunca vivi algo tan lindo con alguien tan hermosa"},
+{img:"foto4.jpg", texto:"Gracias por hacerme tan feliz"},
+{img:"foto5.jpg", texto:"Te amo mucho hoy y mañana cadia mas ❤️"}
+{img:"foto6.jpg", texto:" Un viaje unico,por como fuimos y con quien estuvimos,esta historia quiero que jamas termine"},
+{img:"foto7.jpg", texto:"FELIZ DIA DE LA MUJER MI AMOR SOS LO MAS HERMOSO QUE ME PASO EN LA VIDA, SOS UNA MUJER UNICA,PRECIOSA, QUE TU BELLEZA ILUMINA Y TU SONRISA ME ALEGRA
+LA VIDA TE AMO HOY Y TODA LA VIDA"}
+];
+
+let index = 0;
+
+function mostrar(){
+document.getElementById("imagen").src = fotos[index].img;
+document.getElementById("texto").innerText = fotos[index].texto;
+}
+
+function siguiente(){
+index++;
+if(index >= fotos.length){index = 0;}
+mostrar();
+}
+
+function anterior(){
+index--;
+if(index < 0){index = fotos.length-1;}
+mostrar();
+}
+
+function toggleMusica(){
+let m = document.getElementById("musica");
+if(m.paused){m.play();}
+else{m.pause();}
+}
+
+mostrar();
+
+</script>
 
 </body>
 </html>
