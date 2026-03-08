@@ -161,12 +161,6 @@ font-size:70px;
 text-align:center;
 color:#ff4b7d;
 display:none;
-animation:aparecer 2s;
-}
-
-@keyframes aparecer{
-from{opacity:0; transform:scale(0.5);}
-to{opacity:1; transform:scale(1);}
 }
 
 /* CARTA */
@@ -181,30 +175,28 @@ font-size:22px;
 display:none;
 }
 
+/* FUEGOS ARTIFICIALES */
+
+.explosion{
+position:absolute;
+font-size:25px;
+animation:boom 1s forwards;
+}
+
+@keyframes boom{
+0%{transform:scale(0);opacity:1;}
+100%{transform:scale(4);opacity:0;}
+}
+
 /* VERSION CELULAR */
 
 @media (max-width:768px){
 
-.descripcion{
-font-size:38px;
-padding:25px;
-}
+.descripcion{font-size:38px;}
 
-.final{
-font-size:44px;
-}
+.final{font-size:44px;}
 
-.carta{
-font-size:20px;
-}
-
-.flecha{
-font-size:40px;
-}
-
-.boton-musica{
-font-size:18px;
-}
+.carta{font-size:20px;}
 
 }
 
@@ -239,8 +231,8 @@ SOS EL AMOR<br>DE MI VIDA ❤️
 <div class="carta" id="carta">
 Gracias por llegar a mi vida y por hacerme tan feliz.  
 Cada momento con vos es especial y único.  
-Sos la mujer más hermosa, fuerte y maravillosa que conozco.  
-Te amo hoy, mañana y toda la vida. ❤️
+Sos la mujer más hermosa que existe para mí.  
+Te amo hoy, mañana y toda la vida ❤️
 </div>
 
 </div>
@@ -267,29 +259,25 @@ let img=document.getElementById("imagen");
 img.style.opacity=0;
 
 setTimeout(()=>{
-
 img.src=fotos[index].img;
-
 document.getElementById("texto").innerText=fotos[index].texto;
-
 img.style.opacity=1;
-
-},300)
+},300);
 
 if(index===fotos.length-1){
 
 setTimeout(()=>{
 
 document.getElementById("final").style.display="block";
-
 document.getElementById("carta").style.display="block";
 
-},5000)
+fuegos();
+
+},3000)
 
 }else{
 
 document.getElementById("final").style.display="none";
-
 document.getElementById("carta").style.display="none";
 
 }
@@ -337,7 +325,9 @@ document.getElementById("musica").play();
 
 mostrar();
 
-autoplay=setInterval(siguiente,6000);
+/* ahora cada foto dura 10 segundos */
+
+autoplay=setInterval(siguiente,10000);
 
 }
 
@@ -400,6 +390,29 @@ setTimeout(()=>{p.remove()},10000)
 }
 
 setInterval(crearPetalo,1200);
+
+/* FUEGOS ARTIFICIALES */
+
+function fuegos(){
+
+setInterval(()=>{
+
+let e=document.createElement("div");
+
+e.className="explosion";
+
+e.innerHTML="❤️";
+
+e.style.left=Math.random()*100+"vw";
+e.style.top=Math.random()*80+"vh";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{e.remove()},1000)
+
+},300)
+
+}
 
 </script>
 
