@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Feliz Día de la Mujer ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 background:black;
-font-family:Arial;
+font-family:'Poppins',sans-serif;
 color:white;
 overflow:hidden;
 }
@@ -26,7 +31,7 @@ align-items:center;
 justify-content:center;
 flex-direction:column;
 text-align:center;
-font-size:35px;
+font-size:40px;
 z-index:10;
 cursor:pointer;
 }
@@ -60,12 +65,13 @@ transition:opacity 1s;
 
 .descripcion{
 position:absolute;
-bottom:40px;
+bottom:30px;
 width:100%;
 text-align:center;
-font-size:26px;
-background:rgba(0,0,0,0.4);
+font-size:30px;
+background:rgba(0,0,0,0.45);
 padding:20px;
+font-family:'Great Vibes',cursive;
 }
 
 /* FLECHAS */
@@ -95,7 +101,7 @@ top:20px;
 right:20px;
 background:#ff4b7d;
 border:none;
-padding:10px 15px;
+padding:12px 18px;
 color:white;
 font-size:16px;
 border-radius:10px;
@@ -127,7 +133,7 @@ animation:brillar 2s infinite alternate;
 }
 
 @keyframes brillar{
-from{opacity:0.2;}
+from{opacity:0.3;}
 to{opacity:1;}
 }
 
@@ -151,7 +157,7 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-font-size:60px;
+font-size:70px;
 text-align:center;
 color:#ff4b7d;
 display:none;
@@ -175,6 +181,33 @@ font-size:22px;
 display:none;
 }
 
+/* VERSION CELULAR */
+
+@media (max-width:768px){
+
+.descripcion{
+font-size:38px;
+padding:25px;
+}
+
+.final{
+font-size:44px;
+}
+
+.carta{
+font-size:20px;
+}
+
+.flecha{
+font-size:40px;
+}
+
+.boton-musica{
+font-size:18px;
+}
+
+}
+
 </style>
 </head>
 
@@ -183,7 +216,7 @@ display:none;
 <div class="inicio" onclick="empezar()">
 Feliz día de la mujer ❤️
 <br>
-<span>toca la pantalla</span>
+<span>tocá la pantalla</span>
 </div>
 
 <div class="contenedor">
@@ -204,27 +237,28 @@ SOS EL AMOR<br>DE MI VIDA ❤️
 </div>
 
 <div class="carta" id="carta">
-Gracias por llegar a mi vida, por acompañarme, por hacerme tan feliz.  
-Cada día con vos es especial y no cambiaría ni un segundo de lo que vivimos.  
+Gracias por llegar a mi vida y por hacerme tan feliz.  
+Cada momento con vos es especial y único.  
 Sos la mujer más hermosa, fuerte y maravillosa que conozco.  
-Te amo hoy, mañana y siempre. ❤️
+Te amo hoy, mañana y toda la vida. ❤️
 </div>
 
 </div>
 
 <script>
 
-let fotos = [
-{img:"foto1.jpg", texto:"Sos la luz que ilumina todos mis días"},
-{img:"foto2.jpg", texto:"Con vos todo es más lindo"},
-{img:"foto3.jpg", texto:"Cada momento con vos es único"},
-{img:"foto4.jpg", texto:"Gracias por hacerme tan feliz"},
-{img:"foto5.jpg", texto:"Te amo cada día más"},
-{img:"foto6.jpg", texto:"Nuestra historia recién empieza"},
-{img:"foto7.jpg", texto:"Feliz día de la mujer mi amor ❤️"}
+let fotos=[
+{img:"foto1.jpg",texto:"Sos la luz que ilumina todos mis días"},
+{img:"foto2.jpg",texto:"Con vos todo es más lindo"},
+{img:"foto3.jpg",texto:"Cada momento con vos es único"},
+{img:"foto4.jpg",texto:"Gracias por hacerme tan feliz"},
+{img:"foto5.jpg",texto:"Te amo cada día más"},
+{img:"foto6.jpg",texto:"Nuestra historia recién empieza"},
+{img:"foto7.jpg",texto:"Feliz día de la mujer mi amor ❤️"}
 ];
 
 let index=0;
+let autoplay;
 
 function mostrar(){
 
@@ -233,32 +267,57 @@ let img=document.getElementById("imagen");
 img.style.opacity=0;
 
 setTimeout(()=>{
-img.src=fotos[index].img;
-document.getElementById("texto").innerText=fotos[index].texto;
-img.style.opacity=1;
-},400)
 
-if(index==fotos.length-1){
+img.src=fotos[index].img;
+
+document.getElementById("texto").innerText=fotos[index].texto;
+
+img.style.opacity=1;
+
+},300)
+
+if(index===fotos.length-1){
 
 setTimeout(()=>{
+
 document.getElementById("final").style.display="block";
+
 document.getElementById("carta").style.display="block";
-},4000)
+
+},5000)
+
+}else{
+
+document.getElementById("final").style.display="none";
+
+document.getElementById("carta").style.display="none";
 
 }
 
 }
 
 function siguiente(){
+
 index++;
-if(index>=fotos.length){index=0;}
+
+if(index>=fotos.length){
+index=0;
+}
+
 mostrar();
+
 }
 
 function anterior(){
+
 index--;
-if(index<0){index=fotos.length-1;}
+
+if(index<0){
+index=fotos.length-1;
+}
+
 mostrar();
+
 }
 
 function toggleMusica(){
@@ -278,21 +337,22 @@ document.getElementById("musica").play();
 
 mostrar();
 
+autoplay=setInterval(siguiente,6000);
+
 }
-
-/* CAMBIO AUTOMATICO */
-
-setInterval(siguiente,6000);
 
 /* CORAZONES */
 
 function crearCorazon(){
 
 let c=document.createElement("div");
+
 c.className="corazon";
+
 c.innerHTML="❤️";
 
 c.style.left=Math.random()*100+"vw";
+
 c.style.animationDuration=(4+Math.random()*4)+"s";
 
 document.body.appendChild(c);
@@ -301,16 +361,18 @@ setTimeout(()=>{c.remove()},8000)
 
 }
 
-setInterval(crearCorazon,600);
+setInterval(crearCorazon,700);
 
 /* ESTRELLAS */
 
 for(let i=0;i<80;i++){
 
 let e=document.createElement("div");
+
 e.className="estrella";
 
 e.style.left=Math.random()*100+"vw";
+
 e.style.top=Math.random()*100+"vh";
 
 document.body.appendChild(e);
@@ -322,11 +384,14 @@ document.body.appendChild(e);
 function crearPetalo(){
 
 let p=document.createElement("div");
+
 p.className="petalo";
+
 p.innerHTML="🌹";
 
 p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(5+Math.random()*5)+"s";
+
+p.style.animationDuration=(6+Math.random()*5)+"s";
 
 document.body.appendChild(p);
 
