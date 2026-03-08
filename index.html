@@ -2,81 +2,193 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>FELIZ DIA DE LA MUJER MI AMOR ❤️</title>
+<title>Feliz Día de la Mujer ❤️</title>
 
 <style>
+
 body{
-    margin:0;
-    background:black;
-    font-family:Arial;
-    color:white;
-    overflow:hidden;
+margin:0;
+background:black;
+font-family:Arial;
+color:white;
+overflow:hidden;
 }
+
+/* PANTALLA INICIAL */
+
+.inicio{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+text-align:center;
+font-size:35px;
+z-index:10;
+cursor:pointer;
+}
+
+.inicio span{
+font-size:20px;
+color:#ff4b7d;
+}
+
+/* CONTENEDOR */
 
 .contenedor{
-    position:relative;
-    width:100vw;
-    height:100vh;
+position:relative;
+width:100vw;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
 }
+
+/* FOTO */
 
 .foto{
-    width:100%;
-    height:100%;
-    object-fit:contain;
+max-width:100%;
+max-height:100%;
+object-fit:contain;
+transition:opacity 1s;
 }
+
+/* TEXTO */
 
 .descripcion{
-    position:absolute;
-    bottom:40px;
-    width:100%;
-    text-align:center;
-    font-size:28px;
-    background:rgba(0,0,0,0.4);
-    padding:15px;
+position:absolute;
+bottom:40px;
+width:100%;
+text-align:center;
+font-size:26px;
+background:rgba(0,0,0,0.4);
+padding:20px;
 }
+
+/* FLECHAS */
 
 .flecha{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:50px;
-    cursor:pointer;
-    user-select:none;
-    padding:20px;
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:50px;
+cursor:pointer;
+user-select:none;
+padding:20px;
 }
 
-.izquierda{
-    left:10px;
-}
-
-.derecha{
-    right:10px;
-}
+.izquierda{left:10px;}
+.derecha{right:10px;}
 
 .flecha:hover{
-    color:#ff4b7d;
+color:#ff4b7d;
 }
 
+/* BOTON MUSICA */
+
 .boton-musica{
-    position:absolute;
-    top:20px;
-    right:20px;
-    background:#ff4b7d;
-    border:none;
-    padding:10px 15px;
-    color:white;
-    font-size:16px;
-    border-radius:10px;
-    cursor:pointer;
+position:absolute;
+top:20px;
+right:20px;
+background:#ff4b7d;
+border:none;
+padding:10px 15px;
+color:white;
+font-size:16px;
+border-radius:10px;
+cursor:pointer;
 }
+
+/* CORAZONES */
+
+.corazon{
+position:absolute;
+color:#ff4b7d;
+font-size:20px;
+animation:flotar linear infinite;
+}
+
+@keyframes flotar{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+
+/* ESTRELLAS */
+
+.estrella{
+position:absolute;
+background:white;
+width:2px;
+height:2px;
+animation:brillar 2s infinite alternate;
+}
+
+@keyframes brillar{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+
+/* PETALOS */
+
+.petalo{
+position:absolute;
+font-size:18px;
+animation:caer linear infinite;
+}
+
+@keyframes caer{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* MENSAJE FINAL */
+
+.final{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:60px;
+text-align:center;
+color:#ff4b7d;
+display:none;
+animation:aparecer 2s;
+}
+
+@keyframes aparecer{
+from{opacity:0; transform:scale(0.5);}
+to{opacity:1; transform:scale(1);}
+}
+
+/* CARTA */
+
+.carta{
+position:absolute;
+bottom:0;
+width:100%;
+background:rgba(0,0,0,0.7);
+padding:30px;
+font-size:22px;
+display:none;
+}
+
 </style>
 </head>
 
 <body>
 
+<div class="inicio" onclick="empezar()">
+Feliz día de la mujer ❤️
+<br>
+<span>toca la pantalla</span>
+</div>
+
 <div class="contenedor">
 
-<img id="imagen" class="foto">
+<img id="imagen" class="foto" src="foto1.jpg">
 
 <div class="descripcion" id="texto"></div>
 
@@ -87,46 +199,142 @@ body{
 
 <audio id="musica" src="musica.mp3" loop></audio>
 
+<div class="final" id="final">
+SOS EL AMOR<br>DE MI VIDA ❤️
+</div>
+
+<div class="carta" id="carta">
+Gracias por llegar a mi vida, por acompañarme, por hacerme tan feliz.  
+Cada día con vos es especial y no cambiaría ni un segundo de lo que vivimos.  
+Sos la mujer más hermosa, fuerte y maravillosa que conozco.  
+Te amo hoy, mañana y siempre. ❤️
+</div>
+
 </div>
 
 <script>
 
 let fotos = [
-{img:"foto1.jpg", texto:"Sos la luz que ilumina todos mis días, sin vos no puedo estar. A meses de cumplir un año te digo que sos la mujer más hermosa de esta vida"},
-{img:"foto2.jpg", texto:"Con vos todo es más lindo. Vení a cebarme mates toda mi vida, que cada mate es más dulce no por el azúcar sino porque tu compañía hace más dulce todo"},
-{img:"foto3.jpg", texto:"Cada momento con vos es especial y único. Cada momento es como la primera vez porque nunca viví algo tan lindo con alguien tan hermosa"},
+{img:"foto1.jpg", texto:"Sos la luz que ilumina todos mis días"},
+{img:"foto2.jpg", texto:"Con vos todo es más lindo"},
+{img:"foto3.jpg", texto:"Cada momento con vos es único"},
 {img:"foto4.jpg", texto:"Gracias por hacerme tan feliz"},
-{img:"foto5.jpg", texto:"Te amo mucho hoy y mañana cada día más ❤️"},
-{img:"foto6.jpg", texto:"Un viaje único, por cómo fuimos y con quién estuvimos. Esta historia quiero que jamás termine"},
-{img:"foto7.jpg", texto:"FELIZ DÍA DE LA MUJER MI AMOR. SOS LO MÁS HERMOSO QUE ME PASÓ EN LA VIDA. SOS UNA MUJER ÚNICA, PRECIOSA. TU BELLEZA ILUMINA Y TU SONRISA ME ALEGRA LA VIDA. TE AMO HOY Y TODA LA VIDA"}
+{img:"foto5.jpg", texto:"Te amo cada día más"},
+{img:"foto6.jpg", texto:"Nuestra historia recién empieza"},
+{img:"foto7.jpg", texto:"Feliz día de la mujer mi amor ❤️"}
 ];
 
-let index = 0;
+let index=0;
 
 function mostrar(){
-document.getElementById("imagen").src = fotos[index].img;
-document.getElementById("texto").innerText = fotos[index].texto;
+
+let img=document.getElementById("imagen");
+
+img.style.opacity=0;
+
+setTimeout(()=>{
+img.src=fotos[index].img;
+document.getElementById("texto").innerText=fotos[index].texto;
+img.style.opacity=1;
+},400)
+
+if(index==fotos.length-1){
+
+setTimeout(()=>{
+document.getElementById("final").style.display="block";
+document.getElementById("carta").style.display="block";
+},4000)
+
+}
+
 }
 
 function siguiente(){
 index++;
-if(index >= fotos.length){index = 0;}
+if(index>=fotos.length){index=0;}
 mostrar();
 }
 
 function anterior(){
 index--;
-if(index < 0){index = fotos.length-1;}
+if(index<0){index=fotos.length-1;}
 mostrar();
 }
 
 function toggleMusica(){
-let m = document.getElementById("musica");
+
+let m=document.getElementById("musica");
+
 if(m.paused){m.play();}
 else{m.pause();}
+
 }
 
+function empezar(){
+
+document.querySelector(".inicio").style.display="none";
+
+document.getElementById("musica").play();
+
 mostrar();
+
+}
+
+/* CAMBIO AUTOMATICO */
+
+setInterval(siguiente,6000);
+
+/* CORAZONES */
+
+function crearCorazon(){
+
+let c=document.createElement("div");
+c.className="corazon";
+c.innerHTML="❤️";
+
+c.style.left=Math.random()*100+"vw";
+c.style.animationDuration=(4+Math.random()*4)+"s";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{c.remove()},8000)
+
+}
+
+setInterval(crearCorazon,600);
+
+/* ESTRELLAS */
+
+for(let i=0;i<80;i++){
+
+let e=document.createElement("div");
+e.className="estrella";
+
+e.style.left=Math.random()*100+"vw";
+e.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(e);
+
+}
+
+/* PETALOS */
+
+function crearPetalo(){
+
+let p=document.createElement("div");
+p.className="petalo";
+p.innerHTML="🌹";
+
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(p);
+
+setTimeout(()=>{p.remove()},10000)
+
+}
+
+setInterval(crearPetalo,1200);
 
 </script>
 
